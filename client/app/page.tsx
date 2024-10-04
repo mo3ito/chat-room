@@ -12,15 +12,18 @@ export default function Home() {
       console.log("clicked");
     });
   });
-
+  const [chat, setchat] = useState([]);
   const user = useRef(null);
+
+  console.log(chat);
+  
 
   return (
     <main className="flex flex-col items-center justify-center w-full h-screen py-20 bg-blue-400">
       {!user.current ? (
         <>
-          <Chat />
-          <Input />
+          <Chat chat={chat} />
+          <Input setChat={setchat} user={user.current} socket={socket}/>
         </>
       ) : (
         <p>sign up</p>

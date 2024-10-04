@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 
-export default function Input() {
+export default function Input({setChat , user , socket }) {
+  const [input, setInput] = useState<string>("");
+
+  const sendMessage = ()=>{
+    const msg = {content:input , type:"text" , user}
+    setChat(prev=>[...prev , msg])
+    setInput("")
+  }
+
   return (
     <div className="w-1/3   my-6 h-max flex items-center justify-center gap-x-4">
-      <button className="bg-gradient-to-tr from-blue-600 to-blue-500  h-12 w-16 flex items-center justify-center rounded-lg">
+      <button onClick={sendMessage} className="bg-gradient-to-tr from-blue-600 to-blue-500  h-12 w-16 flex items-center justify-center rounded-lg">
         <svg
           className="size-8 fill-white"
           xmlns="http://www.w3.org/2000/svg"
@@ -14,6 +22,9 @@ export default function Input() {
         </svg>
       </button>
       <input
+        value={input}
+        onChange={(event) => setInput(event?.target.value)}
+        onKeyDown={(event)=> event.key === "Enter" && sendMessage() }
         placeholder="پیام را وارد کنید"
         type="text"
         className=" w-10/12 bg-gradient-to-tr from-blue-600 to-blue-500  rounded-lg text-white px-3 min-h-12 max-h-44 outline-none"
