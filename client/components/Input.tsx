@@ -78,7 +78,7 @@ export default function Input({ setChat, user, socket }: InputChat) {
         onKeyDown={(event) => event.key === "Enter" && sendMessage()}
         placeholder="پیام را وارد کنید"
         type="text"
-        className=" w-10/12 bg-gradient-to-tr from-blue-600 to-blue-500  rounded-lg text-white px-3 min-h-12 max-h-44 outline-none"
+        className=" w-10/12 bg-gradient-to-tr from-blue-600 to-blue-500  rounded-lg text-white px-3 min-h-12 max-h-44 outline-none placeholder-white"
       />
     </div>
   );

@@ -4,12 +4,13 @@ import { io } from "socket.io-client";
 import Input from "@/components/Input";
 import Chat from "@/components/Chat";
 import { ChatType } from "@/types/ChatType";
+import SignUp from "@/components/SignUp";
 
 const socket = io("http://localhost:4000");
 
 export default function Home() {
   const [chat, setChat] = useState<ChatType[] | []>([]);
-  const user = useRef("mostafa");
+  const user = useRef<string | null>(null);
 
   console.log(chat);
   useEffect(() => {
@@ -20,10 +21,9 @@ export default function Home() {
     return () => {
       socket.off("recieve-message");
     };
-  });
+  }, []);
 
   console.log(chat);
-  
 
   return (
     <main className="flex flex-col items-center justify-center w-full h-screen py-20 bg-blue-400">
@@ -33,7 +33,7 @@ export default function Home() {
           <Input setChat={setChat} user={user.current} socket={socket} />
         </>
       ) : (
-        <p>sign up</p>
+        <SignUp socket={socket} user={user.current} />
       )}
     </main>
   );
