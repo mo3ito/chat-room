@@ -1,5 +1,5 @@
 import { ChatType, InputChat } from "@/types/ChatType";
-import React, { useRef, useState } from "react";
+import React, { ChangeEvent, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 export default function Input({ setChat, user, socket }: InputChat) {
@@ -9,9 +9,12 @@ export default function Input({ setChat, user, socket }: InputChat) {
   const sendMessage = () => {
     const msg = { id: uuidv4(), content: input, type: "text", user };
     socket.emit("send-message", msg);
+    socket.emit("user-typing", { user: user?.name, typing: false });
     setChat((prev: ChatType[]) => [...prev, msg]);
     setInput("");
   };
+
+  console.log(user);
 
   const sendFile = () => {
     uploadInputRef.current?.click();
@@ -32,6 +35,14 @@ export default function Input({ setChat, user, socket }: InputChat) {
     } else {
       alert("فرمت عکس فقط باید jpeg , jpg یا png باشد");
     }
+  };
+
+  const userTyping = (event: ChangeEvent<HTMLInputElement>) => {
+    setInput(event.target.value);
+    socket.emit("user-typing", {
+      user: user?.name,
+      typing: event.target.value ? true : false,
+    });
   };
 
   return (
@@ -74,7 +85,7 @@ export default function Input({ setChat, user, socket }: InputChat) {
 
       <input
         value={input}
-        onChange={(event) => setInput(event?.target.value)}
+        onChange={userTyping}
         onKeyDown={(event) => event.key === "Enter" && sendMessage()}
         placeholder="پیام را وارد کنید"
         type="text"

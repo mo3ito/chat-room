@@ -16,6 +16,15 @@ io.on("connection", (socket) => {
     console.log(message);
     socket.broadcast.emit("recieve-message", message);
   });
+
+  socket.on("new-user", (data) => {
+    socket.broadcast.emit("new-user", data.user);
+  });
+
+  socket.on("user-typing", (data) => {
+    console.log(data);
+    socket.broadcast.emit("user-typing", data);
+  });
 });
 
 server.listen(4000, () => console.log("server is running on port 4000"));
