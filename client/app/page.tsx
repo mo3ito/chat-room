@@ -9,7 +9,7 @@ const socket = io("http://localhost:4000");
 
 export default function Home() {
   const [chat, setChat] = useState<ChatType[] | []>([]);
-  const user = useRef(null);
+  const user = useRef("mostafa");
 
   console.log(chat);
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center justify-center w-full h-screen py-20 bg-blue-400">
-      {!user.current ? (
+      {user.current ? (
         <>
           <Chat chat={chat} />
           <Input setChat={setChat} user={user.current} socket={socket} />
