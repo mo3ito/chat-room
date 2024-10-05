@@ -12,9 +12,9 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
-  socket.on("btn-clicked", () => {
-    console.log("clicked");
-    io.emit("do-something")
+  socket.on("send-message", (message) => {
+    console.log(message);
+    socket.broadcast.emit("recieve-message", message);
   });
 });
 

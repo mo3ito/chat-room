@@ -5,10 +5,7 @@ type MessageProps = {
   own: boolean;
 };
 
-export default function Message({
-  content = "میلاد",
-  own = true,
-}: MessageProps) {
+export default function Message({ content, own }: MessageProps) {
   return (
     <p
       className={`${

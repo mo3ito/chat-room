@@ -8,13 +8,19 @@ import { ChatType } from "@/types/ChatType";
 const socket = io("http://localhost:4000");
 
 export default function Home() {
-  useEffect(() => {
-    socket.on("do-something", () => {
-      console.log("clicked");
-    });
-  });
-  const [chat, setchat] = useState<ChatType[]|[]>([]);
+  const [chat, setChat] = useState<ChatType[] | []>([]);
   const user = useRef(null);
+
+  console.log(chat);
+  useEffect(() => {
+    socket.on("recieve-message", (message) => {
+      setChat((prev) => [...prev, message]);
+    });
+
+    return () => {
+      socket.off("recieve-message");
+    };
+  });
 
   console.log(chat);
   
@@ -24,7 +30,7 @@ export default function Home() {
       {!user.current ? (
         <>
           <Chat chat={chat} />
-          <Input setChat={setchat} user={user.current} socket={socket}/>
+          <Input setChat={setChat} user={user.current} socket={socket} />
         </>
       ) : (
         <p>sign up</p>
