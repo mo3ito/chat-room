@@ -12,7 +12,10 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
-  console.log(`user is connected with id ${socket.id} `);
+  socket.on("btn-clicked", () => {
+    console.log("clicked");
+    io.emit("do-something")
+  });
 });
 
 server.listen(4000, () => console.log("server is running on port 4000"));

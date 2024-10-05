@@ -3,6 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import { io } from "socket.io-client";
 import Input from "@/components/Input";
 import Chat from "@/components/Chat";
+import { ChatType } from "@/types/ChatType";
 
 const socket = io("http://localhost:4000");
 
@@ -12,7 +13,7 @@ export default function Home() {
       console.log("clicked");
     });
   });
-  const [chat, setchat] = useState([]);
+  const [chat, setchat] = useState<ChatType[]|[]>([]);
   const user = useRef(null);
 
   console.log(chat);

@@ -1,11 +1,13 @@
+import { ChatType, InputChat } from "@/types/ChatType";
 import React, { useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 
-export default function Input({setChat , user , socket }) {
+export default function Input({setChat , user , socket }:InputChat) {
   const [input, setInput] = useState<string>("");
 
   const sendMessage = ()=>{
-    const msg = {content:input , type:"text" , user}
-    setChat(prev=>[...prev , msg])
+    const msg = {id:uuidv4() ,content:input , type:"text" , user}
+    setChat((prev : ChatType[])=>[...prev , msg])
     setInput("")
   }
 
