@@ -27,7 +27,7 @@ export default function Home() {
         {
           id: uuidv4(),
           content: `${newUser} اضافه شد`,
-          type: "text",
+          type: "server",
           user: newUser,
         },
       ]);

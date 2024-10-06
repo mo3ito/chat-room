@@ -39,6 +39,7 @@ export default function Input({ setChat, user, socket }: InputChat) {
 
   const userTyping = (event: ChangeEvent<HTMLInputElement>) => {
     setInput(event.target.value);
+    
     socket.emit("user-typing", {
       user: user?.name,
       typing: event.target.value ? true : false,

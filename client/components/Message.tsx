@@ -16,7 +16,7 @@ export default function Message({ content, own, type, user }: MessageProps) {
       className={`${own ? "self-start" : "self-end"} w-max flex items-center `}
     >
       {!own && (
-        <div className=" bg-slate-400 size-8 rounded-full flex items-center justify-center ">
+        <div className=" bg-blue-700 size-9 rounded-full flex items-center justify-center text-white ">
           {user?.name?.slice(0, 2).toUpperCase()}
         </div>
       )}
