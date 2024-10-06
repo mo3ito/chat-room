@@ -29,8 +29,7 @@ export default function Chat({ chat, user, typing }: ChatProps) {
           return item.type === "server" ? (
             <ServerMessage
               key={item.id}
-              user={item.user}
-              content={item.content}
+              user={item}
             />
           ) : (
             <Message

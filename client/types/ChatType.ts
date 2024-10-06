@@ -25,3 +25,12 @@ export type InputChat = {
   user: null | UserType;
   socket: Socket;
 };
+
+export type ServerMessageProps = {
+  user: {
+    id: string;
+    content: string;
+    type: string;
+    user: string | UserType | null;
+  };
+};

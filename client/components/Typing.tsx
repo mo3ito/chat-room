@@ -1,7 +1,7 @@
 import React from "react";
 
 type TypingProps = {
-  user: string[];
+  user: string;
 };
 
 export default function Typing({ user }: TypingProps) {

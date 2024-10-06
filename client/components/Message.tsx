@@ -5,7 +5,7 @@ type MessageProps = {
   content: string;
   own: boolean;
   type: string;
-  user: UserType;
+  user: UserType | null;
 };
 
 export default function Message({ content, own, type, user }: MessageProps) {
