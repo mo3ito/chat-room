@@ -8,6 +8,7 @@ export default function Input({ setChat, user, socket }: InputChat) {
   const typingTimeout = useRef<NodeJS.Timeout | null>(null);
 
   const sendMessage = () => {
+    if (!input.trim()) return;
     const msg = { id: uuidv4(), content: input, type: "text", user };
     socket.emit("send-message", msg);
     socket.emit("user-typing", { user: user?.name, typing: false });
