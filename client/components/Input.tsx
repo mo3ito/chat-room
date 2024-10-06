@@ -47,7 +47,8 @@ export default function Input({ setChat, user, socket }: InputChat) {
   };
 
   return (
-    <div className="w-1/3   my-6 h-max flex items-center justify-center gap-x-4">
+    <div className="container px-3 flex items-center justify-center">
+    <section className=" w-full sm:w-10/12 md:w-9/12 lg:w-10/12 xl:w-2/3 2xl:w-2/3   my-6 h-max flex items-center justify-center gap-x-4">
       {!!input ? (
         <button
           onClick={sendMessage}
@@ -92,6 +93,7 @@ export default function Input({ setChat, user, socket }: InputChat) {
         type="text"
         className=" w-10/12 bg-gradient-to-tr from-blue-600 to-blue-500  rounded-lg text-white px-3 min-h-12 max-h-44 outline-none placeholder-white"
       />
+    </section>
     </div>
   );
 }

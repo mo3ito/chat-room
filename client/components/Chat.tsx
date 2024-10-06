@@ -23,26 +23,28 @@ export default function Chat({ chat, user, typing }: ChatProps) {
   }, [chat]);
 
   return (
-    <div className="w-1/2 h-4/5 overflow-y-auto bg-gradient-to-tr from-blue-600 to-blue-500 rounded-lg py-2 flex flex-col gap-y-3">
-      {chat.map((item: ChatType) => {
-        return item.type === "server" ? (
-          <ServerMessage
-            key={item.id}
-            user={item.user}
-            content={item.content}
-          />
-        ) : (
-          <Message
-            content={item.content}
-            own={item.user?.id === user?.id}
-            type={item.type}
-            user={item.user}
-            key={item.id}
-          />
-        );
-      })}
-      {typing[0] && <Typing user={typing[0]} />}
-      <div ref={scrollerRef}></div>
+    <div className="container px-3 h-full">
+      <section className=" w-full  h-full overflow-y-auto bg-gradient-to-tr from-blue-600 to-blue-500 rounded-lg py-2 flex flex-col gap-y-3 overflow-x-hidden ">
+        {chat.map((item: ChatType) => {
+          return item.type === "server" ? (
+            <ServerMessage
+              key={item.id}
+              user={item.user}
+              content={item.content}
+            />
+          ) : (
+            <Message
+              content={item.content}
+              own={item.user?.id === user?.id}
+              type={item.type}
+              user={item.user}
+              key={item.id}
+            />
+          );
+        })}
+        {typing[0] && <Typing user={typing[0]} />}
+        <div ref={scrollerRef}></div>
+      </section>
     </div>
   );
 }
